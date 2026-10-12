@@ -181,10 +181,6 @@ export async function bootScene(): Promise<void> {
 
   document.addEventListener('themechange', () => scene.setTheme(currentTheme()));
 
-  for (const button of document.querySelectorAll('[data-graph-replay]')) {
-    button.addEventListener('click', () => scene.replay());
-  }
-
   document.addEventListener('visibilitychange', () => {
     window.cancelAnimationFrame(frame);
     if (!document.hidden) frame = window.requestAnimationFrame(tick);

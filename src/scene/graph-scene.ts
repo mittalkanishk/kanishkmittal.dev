@@ -238,11 +238,6 @@ export class GraphScene {
     this.spheres.uniforms.uHover!.value = index;
   }
 
-  /** Scatters the graph and lets it resolve again. */
-  replay(): void {
-    if (!this.reducedMotion) this.introStart = -1;
-  }
-
   /** True once the graph has formed and labels can be shown. */
   get settled(): boolean {
     return this.progress > 0.9;

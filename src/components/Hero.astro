@@ -48,15 +48,6 @@ const legend = [
         ))
       }
     </ul>
-    <p class="hint">
-      <span class="hint-text">The graph behind this page is my profile. Click a node to jump to it.</span>
-      <button class="replay" type="button" data-graph-replay>
-        <svg viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M13 8a5 5 0 1 1-1.6-3.7M13 2.5v3h-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-        Scatter it again
-      </button>
-    </p>
   </div>
 </section>
 
@@ -179,48 +170,6 @@ const legend = [
     background: var(--tone);
   }
 
-  .hint {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem 1rem;
-  }
-
-  .replay {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--inset);
-    color: var(--text-soft);
-    font-size: inherit;
-    cursor: pointer;
-  }
-
-  .replay:hover {
-    border-color: var(--accent);
-    color: var(--text);
-  }
-
-  .replay svg {
-    width: 0.9rem;
-    height: 0.9rem;
-  }
-
-  /* Without the graph there is nothing to explain or replay. */
-  :global(.no-webgl) .hint,
-  :global(html:not(.scene-ready)) .hint {
-    visibility: hidden;
-  }
-
-  @media (hover: none) {
-    .hint-text {
-      display: none;
-    }
-  }
-
   /* On narrow screens the graph gets the top of the screen to itself. */
   @media (max-width: 900px) {
     .hero {
@@ -240,10 +189,6 @@ const legend = [
   @media (prefers-reduced-motion: reduce) {
     .beacon::after {
       animation: none;
-    }
-
-    .replay {
-      display: none;
     }
   }
 </style>

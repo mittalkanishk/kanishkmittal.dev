@@ -7,7 +7,7 @@ import type { ClusterId, GraphEdge, GraphNode } from './types';
 export const GRAPH_NODES: GraphNode[] = [
   { id: 'me', label: 'Kanishk Mittal', cluster: 'core', hub: true, section: 'top' },
 
-  { id: 'dailypay', label: 'DailyPay', cluster: 'experience', hub: true, section: 'experience' },
+  { id: 'dailypay', label: 'DailyPay Ireland', cluster: 'experience', hub: true, section: 'experience' },
   { id: 'email-pipeline', label: 'Email engagement pipeline', cluster: 'experience', section: 'experience' },
   { id: 'marketing-pipeline', label: 'Marketing event pipeline', cluster: 'experience', section: 'experience' },
   { id: 'race-fix', label: 'Race-condition fix', cluster: 'experience', section: 'experience' },
@@ -41,7 +41,7 @@ export const GRAPH_NODES: GraphNode[] = [
   { id: 'amplitude', label: 'Amplitude', cluster: 'skills', section: 'skills' },
   { id: 'iterable', label: 'Iterable', cluster: 'skills', section: 'skills' },
 
-  { id: 'brunel', label: 'Brunel University', cluster: 'education', hub: true, section: 'education' },
+  { id: 'brunel', label: 'Brunel University London', cluster: 'education', hub: true, section: 'education' },
   { id: 'beng', label: 'B.Eng, First Class', cluster: 'education', section: 'education' },
   { id: 'hawke', label: 'Graham Hawke Award', cluster: 'education', section: 'education' },
   { id: 'hackathon', label: 'Hackathon win', cluster: 'education', section: 'education' },

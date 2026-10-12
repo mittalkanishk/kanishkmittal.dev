@@ -72,7 +72,7 @@ export const metrics: Metric[] = [
 
 export const roles: Role[] = [
   {
-    company: 'DailyPay',
+    company: 'DailyPay Ireland',
     title: 'Software Developer I',
     period: 'Jul 2025 – Jul 2026',
     location: 'Belfast, UK',
@@ -112,7 +112,7 @@ export const roles: Role[] = [
     ],
   },
   {
-    company: 'DailyPay',
+    company: 'DailyPay Ireland',
     title: 'Software Engineer (Placement)',
     period: 'Sep 2023 – Aug 2024',
     location: 'Belfast, UK',
@@ -196,7 +196,7 @@ export const patentGraph: Project = {
     'An NLP and semantic-search pipeline that maps the relationships between chemical patents. Dissertation: “Knowledge Graph-Augmented LLMs for Chemical Patent Analysis.”',
   points: [
     'Graham Hawke Award for the best final year dissertation in EEE.',
-    'Best Final Year Project in the EEE faculty at Brunel University.',
+    'Best Final Year Project in the EEE faculty at Brunel University London.',
   ],
   stack: ['Python', 'Scrapy', 'Neo4j', 'Vector embeddings', 'LLMs'],
   links: [{ label: 'Watch the demo', href: 'https://www.youtube.com/watch?v=DRHT8MYLaso&t=10s' }],
@@ -250,7 +250,7 @@ export const agentPractices: AgentPractice[] = [
   {
     mode: 'Operate',
     title: 'Agents inside a real team',
-    body: 'At DailyPay I reviewed 100+ pull requests with Claude Code plugins across 9 teammates, including Claude-generated code, and built an automation skill for multi-repo message-type additions.',
+    body: 'At DailyPay Ireland I reviewed 100+ pull requests with Claude Code plugins across 9 teammates, including Claude-generated code, and built an automation skill for multi-repo message-type additions.',
     facts: ['100+ PRs reviewed', '9 teammates', 'Progressive-disclosure prompts'],
   },
   {
@@ -314,8 +314,8 @@ export const skillGroups: SkillGroup[] = [
 export const skillFocus = 'Current focus: Kubernetes-centric deployment infrastructure.';
 
 export const education = {
-  school: 'Brunel University',
-  place: 'London, UK',
+  school: 'Brunel University London',
+  place: 'UK',
   degree: 'B.Eng. Computer Systems Engineering',
   period: 'Sep 2021 – Jun 2025',
   result: 'First Class with Honours',
@@ -325,15 +325,15 @@ export const education = {
 export const awards: Award[] = [
   {
     title: 'Graham Hawke Award',
-    detail: 'Best final year dissertation in EEE, Brunel University.',
+    detail: 'Best final year dissertation in EEE, Brunel University London.',
   },
   {
     title: 'Best Final Year Project',
-    detail: 'EEE faculty, Brunel University, for the patent knowledge graph.',
+    detail: 'EEE faculty, Brunel University London, for the patent knowledge graph.',
   },
   {
     title: 'Hackathon winner',
-    detail: 'Led a 3-person team at DailyPay to prototype AR-based customer onboarding. £500 prize.',
+    detail: 'Led a 3-person team at DailyPay Ireland to prototype AR-based customer onboarding. £500 prize.',
   },
 ];
 
