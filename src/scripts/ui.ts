@@ -102,8 +102,17 @@ export function initHeader(): void {
 }
 
 export function initReveal(): void {
+  // The hero is the first screen, so it enters on load instead of waiting for
+  // scroll. Two frames let the hidden state paint first, so the transition runs.
+  const eager = document.querySelectorAll('[data-reveal="eager"]');
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      for (const element of eager) element.classList.add('is-in');
+    });
+  });
+
   onVisible(
-    document.querySelectorAll('[data-reveal]'),
+    document.querySelectorAll('[data-reveal]:not([data-reveal="eager"])'),
     (element) => element.classList.add('is-in'),
     '0px 0px -6% 0px',
   );

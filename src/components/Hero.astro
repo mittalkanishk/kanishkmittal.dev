@@ -11,14 +11,14 @@ const legend = [
 
 <section id="top" class="hero">
   <div class="container body">
-    <p class="kicker" data-reveal>
+    <p class="kicker" data-reveal="eager">
       {person.role} · New Delhi · {person.timezone}
     </p>
-    <h1 data-reveal data-clear style="--i: 1">{person.name}</h1>
-    <p class="tagline" data-reveal data-clear style="--i: 2">{person.tagline}</p>
-    <p class="intro" data-reveal data-clear style="--i: 3">{person.intro}</p>
+    <h1 data-reveal="eager" data-clear style="--i: 1">{person.name}</h1>
+    <p class="tagline" data-reveal="eager" data-clear style="--i: 2">{person.tagline}</p>
+    <p class="intro" data-reveal="eager" data-clear style="--i: 3">{person.intro}</p>
 
-    <div class="cta" data-reveal data-clear style="--i: 4">
+    <div class="cta" data-reveal="eager" data-clear style="--i: 4">
       <a class="btn btn-primary" href="#projects">See the work</a>
       <a class="btn" href="#contact">Get in touch</a>
       <a class="btn" href={person.github} rel="me noopener">
@@ -29,13 +29,13 @@ const legend = [
       </a>
     </div>
 
-    <p class="status" data-reveal data-clear style="--i: 5">
+    <p class="status" data-reveal="eager" data-clear style="--i: 5">
       <span class="beacon" aria-hidden="true"></span>
       {person.status}. {person.workStyle}
     </p>
   </div>
 
-  <div class="container foot" data-reveal style="--i: 6">
+  <div class="container foot" data-reveal="eager" style="--i: 6">
     <ul class="legend" aria-label="Graph legend">
       {
         legend.map((item) => (
