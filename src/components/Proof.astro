@@ -1,0 +1,131 @@
+---
+import { about, metrics, person } from '../data/profile';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="proof" class="section">
+  <div class="container">
+    <SectionHead index="01" label="Proof" title="The work, in numbers." short />
+
+    <div class="layout">
+      <div class="about panel" data-reveal>
+        {about.map((paragraph) => <p>{paragraph}</p>)}
+        <p class="motto">
+          <span>Motto</span>
+          {person.motto}
+        </p>
+      </div>
+
+      <ul class="stats">
+        {
+          metrics.map((metric, i) => (
+            <li class="stat panel" data-reveal data-tilt style={`--i: ${i + 1}`}>
+              <p class="value">
+                <span data-count={metric.value}>{metric.value}</span>
+                <span class="suffix">{metric.suffix}</span>
+              </p>
+              <p class="unit">{metric.unit}</p>
+              <p class="detail">{metric.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.7fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .about {
+    display: grid;
+    gap: 1rem;
+    padding: clamp(1.4rem, 3vw, 2rem);
+    color: var(--text-soft);
+  }
+
+  .about p:first-child {
+    color: var(--text);
+    font-size: 1.12rem;
+    line-height: 1.5;
+  }
+
+  .motto {
+    display: grid;
+    gap: 0.3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .motto span {
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .stat {
+    display: grid;
+    align-content: start;
+    gap: 0.2rem;
+    padding: 1.4rem 1.4rem 1.5rem;
+  }
+
+  .value {
+    font-size: clamp(2.4rem, 4.4vw, 3.4rem);
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .suffix {
+    color: var(--accent);
+  }
+
+  .unit {
+    margin-top: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .detail {
+    margin-top: 0.5rem;
+    color: var(--text-soft);
+    font-size: 0.93rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 1000px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stat {
+      padding: 1.1rem;
+    }
+  }
+</style>

@@ -1,0 +1,12 @@
+name: kanishkmittal-dev
+
+services:
+  web:
+    build: .
+    image: kanishkmittal-dev:local
+    ports:
+      - "${PORT:-4321}:8080"
+    # The site is static, so the container never needs to write outside /tmp.
+    read_only: true
+    tmpfs:
+      - /tmp

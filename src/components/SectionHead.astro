@@ -1,0 +1,76 @@
+---
+import type { ClusterId } from '../data/types';
+
+interface Props {
+  index: string;
+  label: string;
+  title: string;
+  lede?: string;
+  tone?: ClusterId;
+  /** Short heads skip the open band where the graph shows through. */
+  short?: boolean;
+}
+
+const { index, label, title, lede, tone = 'core', short = false } = Astro.props;
+---
+
+<header class:list={['section-head', { short }]} style={`--tone: var(--c-${tone})`}>
+  <p class="kicker" data-reveal>
+    <span class="dot"></span>
+    <span class="index">{index}</span>
+    {label}
+  </p>
+  <h2 data-reveal data-clear style="--i: 1">{title}</h2>
+  {lede && <p class="lede" data-reveal data-clear style="--i: 2">{lede}</p>}
+</header>
+
+<style>
+  .section-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 1.1rem;
+    max-width: 35rem;
+    min-height: clamp(20rem, 62vh, 36rem);
+    padding-bottom: clamp(2rem, 5vh, 3.25rem);
+  }
+
+  .section-head.short {
+    min-height: 0;
+    padding-top: clamp(3rem, 8vh, 5rem);
+  }
+
+  .dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--tone);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--tone) 22%, transparent);
+  }
+
+  .index {
+    color: var(--text-faint);
+  }
+
+  h2 {
+    font-size: clamp(2.1rem, 5.4vw, 3.6rem);
+  }
+
+  .lede {
+    color: var(--text-soft);
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    line-height: 1.55;
+  }
+
+  /* Taller on narrow screens: the graph sits in the open band above the text. */
+  @media (max-width: 900px) {
+    .section-head {
+      min-height: clamp(24rem, 72svh, 38rem);
+    }
+
+    .section-head.short {
+      min-height: 0;
+    }
+  }
+</style>

@@ -1,0 +1,355 @@
+---
+import { moreProjects, patentGraph, patentPipeline, steerloop, steerloopCapabilities } from '../data/profile';
+import SectionHead from './SectionHead.astro';
+import Terminal from './Terminal.astro';
+---
+
+<section id="projects" class="section">
+  <div class="container">
+    <SectionHead
+      index="03"
+      label="Projects"
+      title="Open source and research."
+      lede="A Go library for steering agent loops, an award-winning knowledge-graph dissertation, and two distributed-systems builds."
+      tone="projects"
+    />
+
+    <article class="feature">
+      <div class="copy panel" data-reveal>
+        <p class="meta">{steerloop.kind} · {steerloop.period}</p>
+        <h3>{steerloop.name}</h3>
+        <p class="summary">{steerloop.summary}</p>
+
+        <dl class="verbs">
+          {
+            steerloopCapabilities.map((capability) => (
+              <div>
+                <dt>{capability.verb}</dt>
+                <dd>{capability.detail}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <ul class="chips">
+          {steerloop.stack.map((item) => <li class="chip">{item}</li>)}
+        </ul>
+      </div>
+
+      <div class="demo" data-reveal style="--i: 1">
+        <Terminal />
+      </div>
+
+      <div class="release panel" data-reveal style="--i: 2">
+        <ul class="points">
+          {steerloop.points.map((point) => <li>{point}</li>)}
+        </ul>
+        {
+          steerloop.links.map((link) => (
+            <a class="btn" href={link.href} rel="noopener">
+              {link.label}
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          ))
+        }
+      </div>
+    </article>
+
+    <article class="patent panel" data-reveal>
+      <div class="patent-copy">
+        <p class="meta">{patentGraph.kind} · {patentGraph.period}</p>
+        <h3>{patentGraph.name}</h3>
+        <p class="summary">{patentGraph.summary}</p>
+        <ul class="points">
+          {patentGraph.points.map((point) => <li>{point}</li>)}
+        </ul>
+        <footer>
+          <ul class="chips">
+            {patentGraph.stack.map((item) => <li class="chip">{item}</li>)}
+          </ul>
+          {
+            patentGraph.links.map((link) => (
+              <a class="text-link" href={link.href} rel="noopener">
+                {link.label}
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            ))
+          }
+        </footer>
+      </div>
+
+      <ol class="pipeline" aria-label="Pipeline stages">
+        {
+          patentPipeline.map((stage, i) => (
+            <li style={`--n: ${i}`}>
+              <span class="node" />
+              <span class="tool">{stage.tool}</span>
+              <span class="job">{stage.job}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </article>
+
+    <ul class="more">
+      {
+        moreProjects.map((project, i) => (
+          <li class="card panel" data-reveal data-tilt style={`--i: ${i}`}>
+            <p class="meta">{project.kind} · {project.period}</p>
+            <h3>{project.name}</h3>
+            <p class="summary">{project.summary}</p>
+            <ul class="points">
+              {project.points.map((point) => <li>{point}</li>)}
+            </ul>
+            <footer>
+              <ul class="chips">
+                {project.stack.map((item) => <li class="chip">{item}</li>)}
+              </ul>
+              {project.links.map((link) => (
+                <a class="text-link" href={link.href} rel="noopener">
+                  {link.label}
+                  <svg viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              ))}
+            </footer>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .copy,
+  .card,
+  .patent-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .copy,
+  .card {
+    padding: clamp(1.4rem, 3vw, 2rem);
+  }
+
+  .copy {
+    border-top: 2px solid var(--c-projects);
+  }
+
+  .copy > .chips {
+    margin-top: auto;
+  }
+
+  .demo {
+    display: grid;
+  }
+
+  /* Release facts and the repo link, in one strip under both columns. */
+  .release {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding: 1.1rem clamp(1.4rem, 3vw, 2rem);
+  }
+
+  .release .points {
+    display: flex;
+    flex: 1 1 30rem;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.75rem;
+  }
+
+  .release .btn {
+    flex: none;
+  }
+
+  .meta {
+    color: var(--c-projects);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+  }
+
+  h3 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  .card h3 {
+    font-size: clamp(1.3rem, 2.2vw, 1.55rem);
+  }
+
+  .summary {
+    color: var(--text-soft);
+  }
+
+  .verbs {
+    display: grid;
+    gap: 0.7rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .verbs div {
+    display: grid;
+    grid-template-columns: 4.6rem 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+
+  .verbs dt {
+    font-weight: 600;
+  }
+
+  .verbs dd {
+    color: var(--text-soft);
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  .points {
+    display: grid;
+    gap: 0.35rem;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+  }
+
+  .points li {
+    position: relative;
+    padding-left: 1.1rem;
+  }
+
+  .points li::before {
+    content: '';
+    position: absolute;
+    top: 0.72em;
+    left: 0;
+    width: 0.4rem;
+    height: 1px;
+    background: var(--c-projects);
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem;
+    margin-top: auto;
+    padding-top: 0.6rem;
+  }
+
+  .patent {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    margin-top: 1rem;
+    padding: clamp(1.4rem, 3vw, 2rem);
+  }
+
+  /* A five-stage pipeline with a pulse running down the wire. */
+  .pipeline {
+    position: relative;
+    display: grid;
+    gap: 0.35rem;
+    padding-left: 0.2rem;
+  }
+
+  .pipeline::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    bottom: 1rem;
+    left: calc(0.2rem + 0.4rem);
+    width: 1px;
+    background: linear-gradient(var(--c-projects), var(--c-skills));
+    opacity: 0.5;
+  }
+
+  .pipeline li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.8rem 6.2rem 1fr;
+    gap: 0.9rem;
+    align-items: center;
+    padding-block: 0.5rem;
+  }
+
+  .node {
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 2px solid var(--c-projects);
+    border-radius: 50%;
+    background: var(--bg);
+    animation: stage 5s linear infinite;
+    animation-delay: calc(var(--n) * 1s);
+  }
+
+  @keyframes stage {
+    0%,
+    18%,
+    100% {
+      background: var(--bg);
+      box-shadow: none;
+    }
+
+    6% {
+      background: var(--c-projects);
+      box-shadow: 0 0 0 5px color-mix(in srgb, var(--c-projects) 25%, transparent);
+    }
+  }
+
+  .tool {
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    font-weight: 500;
+  }
+
+  .job {
+    color: var(--text-soft);
+    font-size: 0.92rem;
+  }
+
+  .more {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 1000px) {
+    .feature,
+    .patent {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .more {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .node {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,25 @@
+{
+  "name": "kanishkmittal-dev",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "lint": "astro check",
+    "test": "vitest run --dir tests"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "^5.3.0",
+    "@fontsource-variable/geist-mono": "^5.3.0",
+    "astro": "^7.3.8",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/three": "^0.186.0",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.4"
+  }
+}

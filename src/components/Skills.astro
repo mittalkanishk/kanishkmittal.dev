@@ -1,0 +1,133 @@
+---
+import { skillFocus, skillGroups } from '../data/profile';
+import type { SkillLevel } from '../data/types';
+import SectionHead from './SectionHead.astro';
+
+const LEVELS: SkillLevel[] = ['Limited', 'Professional', 'Full', 'Native'];
+const rank = (level: SkillLevel): number => LEVELS.indexOf(level) + 1;
+---
+
+<section id="skills" class="section">
+  <div class="container">
+    <SectionHead
+      index="05"
+      label="Stack"
+      title="The tools I reach for."
+      lede="Rated the way my CV rates them, on four steps from limited to native."
+      tone="skills"
+    />
+
+    <ul class="groups">
+      {
+        skillGroups.map((group, i) => (
+          <li class="group panel" data-reveal data-tilt style={`--i: ${i % 3}`}>
+            <h3>{group.name}</h3>
+            <ul class="skills">
+              {group.skills.map((skill) => (
+                <li>
+                  <span class="name">{skill.name}</span>
+                  <span class="level">{skill.level}</span>
+                  <span class="meter" aria-hidden="true">
+                    {LEVELS.map((_, step) => (
+                      <i class:list={{ on: step < rank(skill.level) }} />
+                    ))}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+      <li class="focus panel" data-reveal style="--i: 2">
+        <p class="kicker">Focus</p>
+        <p>{skillFocus}</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .groups {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .group,
+  .focus {
+    padding: 1.5rem;
+  }
+
+  h3 {
+    margin-bottom: 0.9rem;
+    color: var(--c-skills);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .skills li {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding-block: 0.55rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .name {
+    font-weight: 500;
+    font-size: 0.98rem;
+  }
+
+  .level {
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+  }
+
+  .meter {
+    display: flex;
+    gap: 3px;
+  }
+
+  .meter i {
+    width: 0.38rem;
+    height: 0.9rem;
+    border-radius: 2px;
+    background: var(--line-strong);
+    opacity: 0.5;
+  }
+
+  .meter i.on {
+    background: var(--c-skills);
+    opacity: 1;
+  }
+
+  .focus {
+    display: grid;
+    gap: 0.6rem;
+    border-style: dashed;
+  }
+
+  .focus p:last-child {
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 1000px) {
+    .groups {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .groups {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

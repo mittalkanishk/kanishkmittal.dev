@@ -1,0 +1,142 @@
+---
+import { awards, education } from '../data/profile';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="education" class="section">
+  <div class="container">
+    <SectionHead
+      index="06"
+      label="Education"
+      title="First Class, and a dissertation that won."
+      lede="Four years at Brunel in London, with a placement year in industry along the way."
+      tone="education"
+    />
+
+    <div class="layout">
+      <article class="degree panel" data-reveal>
+        <p class="period">{education.period}</p>
+        <h3>{education.degree}</h3>
+        <p class="where">
+          {education.school} · {education.place}
+        </p>
+        <dl>
+          <div>
+            <dt>Result</dt>
+            <dd>{education.result}</dd>
+          </div>
+          <div>
+            <dt>Dissertation</dt>
+            <dd>{education.dissertation}</dd>
+          </div>
+        </dl>
+      </article>
+
+      <ul class="awards">
+        {
+          awards.map((award, i) => (
+            <li class="award panel" data-reveal data-tilt style={`--i: ${i + 1}`}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="9" r="5.5" fill="none" stroke="currentColor" stroke-width="1.6" />
+                <path d="m8.5 13.5-1.5 7 5-2.6 5 2.6-1.5-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+              </svg>
+              <div>
+                <h4>{award.title}</h4>
+                <p>{award.detail}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .degree {
+    display: grid;
+    gap: 0.5rem;
+    padding: clamp(1.4rem, 3vw, 2rem);
+    border-top: 2px solid var(--c-education);
+  }
+
+  .period {
+    color: var(--c-education);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+  }
+
+  .where {
+    color: var(--text-soft);
+  }
+
+  dl {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 0.8rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  dt {
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    font-size: 1.08rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .awards {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .award {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.25rem 1.4rem;
+  }
+
+  .award svg {
+    width: 1.7rem;
+    height: 1.7rem;
+    color: var(--c-education);
+  }
+
+  h4 {
+    font-size: 1.08rem;
+    letter-spacing: -0.02em;
+  }
+
+  .award p {
+    margin-top: 0.25rem;
+    color: var(--text-soft);
+    font-size: 0.94rem;
+  }
+
+  @media (max-width: 900px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

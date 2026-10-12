@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found · Kanishk Mittal" description="That page does not exist.">
+  <section id="top" class="lost">
+    <div class="container">
+      <p class="kicker">404</p>
+      <h1>That node isn’t in the graph.</h1>
+      <p>The page you asked for doesn’t exist.</p>
+      <a class="btn btn-primary" href="/">Back to the start</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lost {
+    display: grid;
+    align-items: center;
+    min-height: 100svh;
+  }
+
+  .lost .container {
+    display: grid;
+    justify-items: start;
+    gap: 1.2rem;
+  }
+
+  h1 {
+    max-width: 14ch;
+    font-size: clamp(2.6rem, 8vw, 5rem);
+    letter-spacing: -0.05em;
+  }
+
+  p:not(.kicker) {
+    color: var(--text-soft);
+  }
+</style>

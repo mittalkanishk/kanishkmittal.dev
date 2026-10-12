@@ -1,0 +1,139 @@
+---
+import { roles } from '../data/profile';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="experience" class="section">
+  <div class="container">
+    <SectionHead
+      index="02"
+      label="Experience"
+      title="Event-driven systems at DailyPay."
+      lede="Two stints in Belfast. First a placement year on the ledger, then a year shipping marketing-technology pipelines, CI tooling and on-call fixes."
+      tone="experience"
+    />
+
+    <div class="roles">
+      {
+        roles.map((role) => (
+          <article class="role">
+            <header class="role-head panel" data-reveal>
+              <p class="period">{role.period}</p>
+              <h3>{role.title}</h3>
+              <p class="where">
+                {role.company} · {role.location}
+              </p>
+              <p class="summary">{role.summary}</p>
+            </header>
+
+            <ul class="highlights">
+              {role.highlights.map((item, i) => (
+                <li class="highlight panel" data-reveal data-tilt style={`--i: ${(i % 2) + 1}`}>
+                  <h4>{item.title}</h4>
+                  <p>{item.body}</p>
+                  <ul class="chips">
+                    {item.tags.map((tag) => (
+                      <li class="chip">{tag}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .roles {
+    display: grid;
+    gap: clamp(2.5rem, 6vh, 4rem);
+  }
+
+  .role {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.7fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .role-head {
+    position: sticky;
+    top: 5.5rem;
+    display: grid;
+    gap: 0.5rem;
+    padding: clamp(1.4rem, 3vw, 2rem);
+    border-left: 2px solid var(--c-experience);
+  }
+
+  .period {
+    color: var(--c-experience);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+
+  h3 {
+    font-size: clamp(1.45rem, 2.4vw, 1.8rem);
+  }
+
+  .where {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+  }
+
+  .summary {
+    margin-top: 0.6rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    color: var(--text-soft);
+    font-size: 0.97rem;
+  }
+
+  .highlights {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 1.4rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .highlight p {
+    color: var(--text-soft);
+    font-size: 0.95rem;
+    line-height: 1.58;
+  }
+
+  .highlight .chips {
+    margin-top: auto;
+    padding-top: 0.4rem;
+  }
+
+  @media (max-width: 1000px) {
+    .role {
+      grid-template-columns: 1fr;
+    }
+
+    .role-head {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .highlights {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

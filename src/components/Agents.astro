@@ -1,0 +1,92 @@
+---
+import { agentPractices } from '../data/profile';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="agents" class="section">
+  <div class="container">
+    <SectionHead
+      index="04"
+      label="Agents"
+      title="Agents, with a hand on the wheel."
+      lede="I build with LLM agents, run them inside a team, and have researched how to ground them. The common thread is control: being able to stop, steer and audit what a model does."
+      tone="projects"
+    />
+
+    <ol class="practices">
+      {
+        agentPractices.map((practice, i) => (
+          <li class="practice panel" data-reveal data-tilt style={`--i: ${i}`}>
+            <p class="mode">
+              <span class="step">{String(i + 1).padStart(2, '0')}</span>
+              {practice.mode}
+            </p>
+            <h3>{practice.title}</h3>
+            <p class="body">{practice.body}</p>
+            <ul class="chips">
+              {practice.facts.map((fact) => (
+                <li class="chip">{fact}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .practices {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .practice {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: clamp(1.4rem, 2.6vw, 1.9rem);
+  }
+
+  .mode {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .step {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--c-projects);
+    border-radius: 50%;
+    color: var(--c-projects);
+    letter-spacing: 0;
+  }
+
+  h3 {
+    font-size: clamp(1.3rem, 2.1vw, 1.55rem);
+  }
+
+  .body {
+    color: var(--text-soft);
+    font-size: 0.97rem;
+  }
+
+  .chips {
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  @media (max-width: 960px) {
+    .practices {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

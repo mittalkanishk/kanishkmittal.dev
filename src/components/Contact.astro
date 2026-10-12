@@ -1,0 +1,121 @@
+---
+import { person } from '../data/profile';
+import SectionHead from './SectionHead.astro';
+---
+
+<section id="contact" class="section">
+  <div class="container">
+    <SectionHead
+      index="07"
+      label="Contact"
+      title="Let’s talk."
+      lede="I’m looking for a software engineering role. If you have one, or just want to compare notes on Go, event pipelines or agent loops, write to me."
+    />
+
+    <div class="card panel" data-reveal>
+      <div class="lead">
+        <p class="kicker">Email</p>
+        <a class="email" href={`mailto:${person.email}`}>{person.email}</a>
+        <div class="actions">
+          <a class="btn btn-primary" href={`mailto:${person.email}`}>Write to me</a>
+          <button class="btn" type="button" data-copy={person.email}>
+            <span data-copy-label>Copy address</span>
+          </button>
+          <a class="btn" href={person.github} rel="me noopener">
+            GitHub
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <dl class="facts">
+        <div>
+          <dt>Based in</dt>
+          <dd>{person.location} ({person.timezone})</dd>
+        </div>
+        <div>
+          <dt>Working style</dt>
+          <dd>{person.workStyle}</dd>
+        </div>
+        <div>
+          <dt>Availability</dt>
+          <dd>{person.availability}</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  .card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(1.6rem, 4vw, 2.75rem);
+  }
+
+  .lead {
+    display: grid;
+    gap: 0.9rem;
+    align-content: start;
+  }
+
+  .email {
+    width: fit-content;
+    max-width: 100%;
+    font-size: clamp(1.35rem, 4.2vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 100% / 0 2px;
+    transition: background-size 0.4s var(--ease);
+  }
+
+  .email:hover {
+    background-size: 100% 2px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+  }
+
+  .facts {
+    display: grid;
+    gap: 1.1rem;
+    align-content: start;
+    padding-left: clamp(1.5rem, 4vw, 3rem);
+    border-left: 1px solid var(--line);
+  }
+
+  dt {
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin-top: 0.15rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 860px) {
+    .card {
+      grid-template-columns: 1fr;
+    }
+
+    .facts {
+      padding: 1.5rem 0 0;
+      border-top: 1px solid var(--line);
+      border-left: 0;
+    }
+  }
+</style>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .bg { fill: #06080c; }
+    .edge { stroke: #7d8898; }
+    @media (prefers-color-scheme: light) {
+      .bg { fill: #f3f1ec; }
+      .edge { stroke: #626c7b; }
+    }
+  </style>
+  <rect class="bg" width="32" height="32" rx="7" />
+  <path class="edge" d="M8.5 22 16 8.5l7.5 11M8.5 22l15-2.5" fill="none" stroke-width="1.6" />
+  <circle cx="8.5" cy="22" r="3" fill="#58e6b8" />
+  <circle cx="16" cy="8.5" r="3.6" fill="#56d4ff" />
+  <circle cx="23.5" cy="19.5" r="3" fill="#a594ff" />
+</svg>
