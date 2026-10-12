@@ -9,3 +9,5 @@ Dockerfile
 compose.yaml
 Makefile
 README.md
+.github
+scripts

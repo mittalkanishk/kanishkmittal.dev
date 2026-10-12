@@ -6,7 +6,10 @@ services:
     image: kanishkmittal-dev:local
     ports:
       - "${PORT:-4321}:8080"
-    # The site is static, so the container never needs to write outside /tmp.
+    # The site is static. The container only writes its pid and temp files to
+    # /tmp, and the nginx config it generates at start-up to conf.d.
     read_only: true
     tmpfs:
       - /tmp
+      # Owned by the nginx user (uid 101), which the image runs as.
+      - /etc/nginx/conf.d:uid=101,gid=101

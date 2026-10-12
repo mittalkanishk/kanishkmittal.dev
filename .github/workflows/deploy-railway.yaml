@@ -1,0 +1,50 @@
+# Deploys a released image to Railway. The Release workflow calls it as its
+# deploy step. Run it by hand (Actions, Deploy (Railway), Run workflow) to
+# redeploy or to roll back to any earlier release.
+#
+# Repo secrets:
+#   RAILWAY_SERVICE_ID       the Railway service the site runs on
+#   RAILWAY_PROJECT_TOKEN    a project token for the environment to deploy to
+# In place of the project token:
+#   RAILWAY_TOKEN            an account or workspace token, together with
+#   RAILWAY_ENVIRONMENT_ID   the environment to deploy to
+
+name: Deploy (Railway)
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: "Released version to deploy, e.g. v1.0.0"
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Released version to deploy, e.g. v1.0.0"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to Railway
+    runs-on: ubuntu-latest
+    # One deployment at a time. A later one waits instead of cancelling this one.
+    concurrency:
+      group: deploy-railway
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Deploy
+        run: make deploy VERSION="${VERSION}"
+        env:
+          VERSION: ${{ inputs.version }}
+          RAILWAY_SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID }}
+          RAILWAY_PROJECT_TOKEN: ${{ secrets.RAILWAY_PROJECT_TOKEN }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_ENVIRONMENT_ID: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
